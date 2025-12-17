@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SixthSense | Advanced Rear Awareness</title>
+    <meta name="description" content="SixthSense watches your back so you can run freely.">
+
+    <!-- Fonts: Poppins (Body) & Orbitron (Futuristic Headers/Buttons) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;500;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            /* Professional Palette: "Daredevil Red" & Clean White */
+            --brand-main: #D90429;
+            /* Deep Professional Red */
+            --brand-dark: #1a1a1a;
+            /* Soft Black */
+
+            --white: #ffffff;
+            --off-white: #f4f6f8;
+            /* Slightly darker for contrast */
+
+            --text-on-brand: #ffffff;
+            --text-on-white: #2b2d42;
+
+            --accent-alert: #EF233C;
+            --runner-color: #ffffff;
+
+            --font-main: 'Poppins', sans-serif;
+            --font-tech: 'Orbitron', sans-serif;
+            /* New Futuristic Font */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--brand-dark);
+            color: var(--text-on-brand);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: none;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Buttons: Futuristic Font */
+        .btn {
+            display: inline-block;
+            background: var(--brand-main);
+            color: var(--white);
+            padding: 16px 30px;
+            font-family: var(--font-tech);
+            /* Futuristic */
+            font-weight: 800;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            margin-block-start: 20px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: var(--off-white);
+        }
+
+        /* --- NAVBAR (Translucent White Glass) --- */
+        .navbar {
+            background: transparent;
+            /* Start transparent */
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: none;
+            height: 80px;
+            /* Explicit height for calculation */
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            /* Smooth transition */
+        }
+
+        /* Scrolled state */
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            /* Center logo since button is gone */
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            font-family: var(--font-tech);
+            /* Futuristic Logo */
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: #fff;
+            letter-spacing: 3px;
+            /* Spaced out */
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Removed .nav-btn styles as the button is being removed */
+
+        /* --- HERO SECTION --- */
+        #hero {
+            padding-top: 40px;
+            padding-bottom: 80px;
+            /* Calculate height minus navbar to prevent overflow */
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* Remove default background to let the pseudo-element show */
+            background: transparent;
+            overflow: hidden;
+            /* Ensure blur doesn't bleed */
+        }
+
+        /* Cinematic Blurred Background */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* High-quality moody runner image */
+            background-image: url('hero.png');
+            background-size: cover;
+            background-position: center;
+            /* Removed blur filter as requested */
+            filter: none;
+            z-index: -2;
+        }
+
+        /* Dark Overlay for Text Readability */
+
+
+        .hero-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            letter-spacing: -1px;
+            margin-bottom: 25px;
+        }
+
+        .hero-text p {
+            color: var(--text-on-brand);
+            font-size: 1.25rem;
+            opacity: 0.9;
+            font-weight: 400;
+            max-width: 480px;
+        }
+
+        #dynamic-text {
+            font-weight: 700;
+            color: #fff;
+            display: inline-block;
+            transition: opacity 0.5s ease;
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 255, 255, 0.4);
+            text-underline-offset: 4px;
+        }
+
+        .fade-out {
+            opacity: 0;
+        }
+
+        /* Full Width Feature Grid */
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* 2x2 Grid */
+            gap: 0;
+            /* No gaps */
+            width: 100%;
+            /* Full Width */
+            margin-top: 0;
+            /* Removed margin */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Large Screens: Single Row */
+        @media (min-width: 1200px) {
+            .hero-features {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .feature-item {
+            padding: 60px 40px;
+            /* Large padding for full width feel */
+            text-align: center;
+            transition: all 0.2s;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Unique Backgrounds - Muted Palette */
+        .feature-item:nth-child(1) {
+            background-color: #425463;
+        }
+
+        .feature-item:nth-child(2) {
+            background-color: #5c6b5e;
+        }
+
+        .feature-item:nth-child(3) {
+            background-color: #7a6b5c;
+        }
+
+        .feature-item:nth-child(4) {
+            background-color: #6b5c7a;
+        }
+
+        /* Flat UI Purple (Wisteria) */
+
+        .feature-item:hover {
+            filter: brightness(1.1);
+            /* Slight lift on hover */
+            z-index: 1;
+            position: relative;
+        }
+
+        .feature-icon {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .feature-item h3 {
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-item p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0;
+            line-height: 1.5;
+            max-width: 400px;
+        }
+
+        /* Scroll Indicator Arrow */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+
+        /* --- WHITE CONTENT CONTAINER --- */
+        #white-content {
+            background: transparent;
+            color: var(--text-on-white);
+            padding: 0;
+            border-radius: 0;
+            position: relative;
+            z-index: 5;
+            min-height: 60vh;
+            overflow: hidden;
+        }
+
+        /* --- PRODUCT SHOWCASE (Birdie Style) --- */
+        #product {
+            background: var(--white);
+            padding: 120px 20px;
+            overflow: hidden;
+        }
+
+        .product-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .product-info {
+            text-align: left;
+        }
+
+        .product-info h2 {
+            color: var(--brand-dark);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .product-info p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .spec-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-on-white);
+            font-size: 1.05rem;
+        }
+
+        .spec-item i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #fff0f0;
+            border-radius: 50%;
+            color: var(--brand-main);
+            margin-right: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Device Visual Side */
+        .product-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px;
+        }
+
+        /* Decorative Background Blob */
+        .product-visual::before {
+            content: '';
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: var(--off-white);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        /* Device Mockup */
+        .device-stage {
+            position: relative;
+            z-index: 1;
+            width: 280px;
+            height: 280px;
+            background: #2a2a2a;
+            /* Darker frame */
+            border-radius: 60px;
+            /* Thick bevel effect */
+            border: 14px solid #111;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.1),
+                inset -2px -2px 5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            transform: rotateX(15deg) rotateY(-20deg) scale(1.05);
+            /* Initial top-down/angled view */
+            transition: transform 0.1s linear;
+        }
+
+        .device-body {
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            border-radius: 60px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 5px 5px 20px rgba(255, 255, 255, 0.05), inset -5px -5px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .device-finish {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .led-indicator {
+            width: 10px;
+            height: 10px;
+            background: var(--brand-main);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px var(--brand-main);
+            animation: breathe 3s infinite ease-in-out;
+        }
+
+        /* --- ALERTS SECTION (Off-White Background) --- */
+        #alerts {
+            background: #fafafa;
+            /* Lighter gray background */
+            /* Reduced bottom padding to pull footer closer */
+            padding: 100px 20px 40px;
+        }
+
+        /* Updated Alerts Typography to match Product Section */
+        #alerts h2 {
+            color: var(--brand-dark);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            text-align: left;
+        }
+
+        #alerts>.container>p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            text-align: left;
+            max-width: 600px;
+            /* optimal reading width */
+        }
+
+        .alert-cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* Changed to 3 columns */
+            gap: 30px;
+            max-width: 1100px;
+            /* Increased width */
+            margin: 0 auto;
+            /* Removed top margin since p has margin-bottom */
+        }
+
+        .alert-card {
+            background: var(--white);
+            /* White cards on off-white bg */
+            border: 1px solid transparent;
+            border-radius: 16px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .alert-card:hover {
+            border-color: #ddd;
+            transform: translateY(-3px);
+        }
+
+        /* Unique Card Colors */
+        .alert-card.passer {
+            background: #eef7ff;
+        }
+
+        /* Soft Blue */
+        .alert-card.passer:hover {
+            border-color: #dbeeff;
+        }
+
+        .passer h3,
+        .passer strong,
+        .passer .vibe-icon {
+            color: #0284c7;
+        }
+
+        /* Deep Sky Blue Text */
+
+        .alert-card.vehicle {
+            background: #fffbea;
+        }
+
+        /* Soft Amber/Yellow */
+        .alert-card.vehicle:hover {
+            border-color: #ffeebb;
+        }
+
+        .vehicle h3,
+        .vehicle strong,
+        .vehicle .vibe-icon {
+            color: #d97706;
+        }
+
+        /* Amber Text */
+
+        .alert-card.stalker {
+            background: #fff0f0;
+        }
+
+        /* Soft Red */
+        .alert-card.stalker:hover {
+            border-color: #ffdce0;
+        }
+
+        .stalker h3,
+        .stalker strong,
+        .stalker .vibe-icon {
+            color: var(--brand-main);
+        }
+
+        /* Red Text */
+
+        .vibe-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--off-white);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-dark);
+        }
+
+        /* Make icons pop on colored cards */
+        .passer .vibe-icon,
+        .vehicle .vibe-icon,
+        .stalker .vibe-icon {
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 450px;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            color: var(--brand-dark);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--brand-dark);
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            transition: border-color 0.2s;
+        }
+
+        .email-input:focus {
+            border-color: var(--brand-main);
+            outline: none;
+        }
+
+        .modal-btn {
+            width: 100%;
+            background: var(--brand-main);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: var(--font-tech);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-btn:hover {
+            background: #b00020;
+        }
+
+        /* Reduced footer padding */
+        footer {
+            background: #fafafa;
+            text-align: center;
+            padding: 25px;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin-bottom: 60px;
+            }
+
+            /* Stack vertically on mobile, keeping the block look */
+            .hero-features {
+                grid-template-columns: 1fr;
+            }
+
+            .alert-cards-container {
+                grid-template-columns: 1fr;
+            }
+
+            /* New Mobile Styles for Product Section */
+            .product-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .product-info {
+                text-align: center;
+            }
+
+            .spec-item {
+                justify-content: center;
+            }
+
+            .product-visual::before {
+                width: 300px;
+                height: 300px;
+            }
+
+            #white-content {
+                border-radius: 30px 30px 0 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">SixthSense</div>
+            <!-- Button removed -->
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <!-- Center Column -->
+        <div class="container">
+            <div class="hero-wrapper">
+                <div class="hero-text">
+                    <h1 class="hero-title">Don't Become A Statistic.</h1>
+                    <p>The world's first radar that watches your back <span id="dynamic-text">on the trails.</span></p>
+                    <!-- Updated Button Text -->
+                    <button class="btn trigger-modal">Pre-Order | $99</button>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- Scroll Arrow -->
+        <div class="scroll-indicator"
+             onclick="document.getElementById('features-grid').scrollIntoView({behavior: 'smooth'})">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+    </section>
+
+    <!-- Full Width Feature Grid (Now Outside Hero) -->
+    <div class="hero-features" id="features-grid">
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-eye"></i></div>
+            <h3>Rear Awareness</h3>
+            <p>60GHz sensor constantly scans the area behind you while you move forward.</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-filter"></i></div>
+            <h3>Smart Filter</h3>
+            <p>Ignores passing cars and trees. Designed to detect stalkers.</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <h3>Phone-Free</h3>
+            <p>No app required. Just clip it on, turn it on, and run.</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
+            <h3>All-Weather</h3>
+            <p>Rain, fog, or sweat. IP67 rated to perform in any condition you run in.</p>
+        </div>
+    </div>
+
+    <!-- WHITE CONTENT CONTAINER -->
+    <div id="white-content">
+
+        <!-- PRODUCT (Split Layout / Birdie Style) -->
+        <section id="product">
+            <div class="container product-wrapper">
+
+                <!-- Left: Text Info -->
+                <div class="product-info">
+                    <h2>Designed for Your Routine.</h2>
+                    <p>Engineered to be invisible until you need it. The matte black, water-resistant shell clips
+                        silently to your collar, sports bra, or waistband.</p>
+
+                    <div class="spec-list">
+                        <div class="spec-item"><i class="fa-solid fa-battery-full"></i> 12-Hour Active Battery</div>
+                        <div class="spec-item"><i class="fa-solid fa-droplet"></i> IP67 Waterproof & Sweatproof</div>
+                        <div class="spec-item"><i class="fa-solid fa-ban"></i> Zero Screens. Zero Distractions.</div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Device -->
+                <div class="product-visual">
+                    <div class="device-stage">
+                        <div class="device-body">
+                            <div class="device-finish"></div>
+                            <div class="led-indicator"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ALERTS (Off-White Background) -->
+        <section id="alerts">
+            <div class="container">
+                <h2>Intuitive Alerts</h2>
+                <p>A simple vibration language that you feel instantly.</p>
+
+                <div class="alert-cards-container">
+
+                    <!-- Passer Card -->
+                    <div class="alert-card passer">
+                        <div class="vibe-icon"><i class="fa-solid fa-person-running"></i></div>
+                        <h3>The Passer</h3>
+                        <p>Someone running past you or a cyclist.</p>
+                        <strong>1 Short Tick</strong>
+                    </div>
+
+                    <!-- Vehicle Card -->
+                    <div class="alert-card vehicle">
+                        <div class="vibe-icon"><i class="fa-solid fa-car-side"></i></div>
+                        <h3>The Vehicle</h3>
+                        <p>A car or truck approaching from behind.</p>
+                        <strong>1 Long Rumble</strong>
+                    </div>
+
+                    <!-- Stalker Card -->
+                    <div class="alert-card stalker">
+                        <div class="vibe-icon"><i class="fa-solid fa-user-secret"></i></div>
+                        <h3>The Stalker</h3>
+                        <p>Someone matching your pace in your blind spot.</p>
+                        <strong>2 Solid Thumps</strong>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 SixthSense Safety.</p>
+        </footer>
+
+    </div> <!-- End White Content -->
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">&times;</div>
+            <h3>Reserve Your Spot</h3>
+            <p>You are joining the priority waitlist for <strong>Batch #1</strong>.<br>No payment is required today.</p>
+
+            <form id="waitlistForm">
+                <input type="email" class="email-input" placeholder="Enter your email address" required>
+                <button type="submit" class="modal-btn">Join Waitlist</button>
+            </form>
+
+            <p id="successMessage" class="hidden"
+               style="margin-top:20px; margin-bottom:0; color: var(--brand-main); font-weight:bold;">
+                You're on the list! We'll notify you when we launch.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Modal Logic
+        const modal = document.getElementById('modal');
+        const triggers = document.querySelectorAll('.trigger-modal');
+
+        triggers.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.classList.add('active');
+            });
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Close on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Form Logic
+        document.getElementById('waitlistForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            btn.innerHTML = "Processing...";
+            btn.style.opacity = "0.7";
+
+            setTimeout(() => {
+                this.querySelector('input').style.display = 'none';
+                btn.style.display = 'none';
+                // Hide the explanation text
+                this.previousElementSibling.style.display = 'none';
+                // Hide the title
+                this.parentElement.querySelector('h3').innerText = "Spot Secured.";
+
+                document.getElementById('successMessage').style.display = 'block';
+            }, 1000);
+        });
+
+        // Text Rotator
+        const textElement = document.getElementById('dynamic-text');
+        const phrases = ['on the trails.', 'in the neighborhood.', 'on the streets.'];
+        let phraseIndex = 0;
+
+        setInterval(() => {
+            textElement.classList.add('fade-out');
+
+            setTimeout(() => {
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                textElement.textContent = phrases[phraseIndex];
+                textElement.classList.remove('fade-out');
+            }, 500); // Match CSS transition time
+        }, 3000); // 3 seconds visible
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            // Product Device Rotation
+            const device = document.querySelector('.device-stage');
+            const productSection = document.getElementById('product');
+            if (productSection && device) {
+                const rect = productSection.getBoundingClientRect();
+                const viewHeight = window.innerHeight;
+
+                if (rect.top < viewHeight && rect.bottom > 0) {
+                    // Rotate from top-down (70deg) to user-facing (15deg) on scroll
+                    const progress = (rect.top - start) / (end - start);
+                    const tilt = 70 - (progress * 55);
+                    device.style.transform = `rotateX(${tilt}deg) rotateY(-20deg) rotateZ(0deg)`;
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
