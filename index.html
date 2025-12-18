@@ -23,6 +23,7 @@
             --brand-main: #D90429;
             /* Deep Professional Red */
             --brand-dark: #1a1a1a;
+            --brand-secondary: #fc2b13f6;
             /* Soft Black */
 
             --white: #ffffff;
@@ -93,32 +94,31 @@
             background: var(--brand-main);
             color: var(--white);
             padding: 16px 30px;
-            font-family: var(--font-tech);
+            font-family: var(--font-main);
             /* Futuristic */
-            font-weight: 800;
             letter-spacing: 1px;
-            font-size: 1rem;
+            font-size: 1.2rem;
             border-radius: 50px;
             text-decoration: none;
             border: none;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.2s ease;
-            text-transform: uppercase;
+            /* text-transform: uppercase; */
             margin-block-start: 20px;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             background: var(--off-white);
+            color: var(--brand-main);
         }
 
         /* --- NAVBAR (Translucent White Glass) --- */
         .navbar {
             background: transparent;
             /* Start transparent */
-            padding: 12px 0;
+            padding: 8px 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -270,6 +270,10 @@
             opacity: 0.9;
             font-weight: 400;
             max-width: 480px;
+        }
+
+        .hero-title span {
+            color: var(--brand-secondary);
         }
 
         #dynamic-text {
@@ -707,7 +711,7 @@
         .modal-content {
             background: white;
             width: 90%;
-            max-width: 450px;
+            max-width: 550px;
             padding: 40px;
             border-radius: 24px;
             text-align: center;
@@ -839,6 +843,208 @@
             #white-content {
                 border-radius: 30px 30px 0 0;
             }
+
+            .how-it-works-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- HOW IT WORKS SECTION --- */
+        #how-it-works {
+            background: var(--off-white);
+            padding: 80px 20px;
+        }
+
+        #how-it-works h2 {
+            color: var(--brand-dark);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            letter-spacing: -1px;
+            text-align: center;
+        }
+
+        .how-it-works-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--brand-main);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step-item h3 {
+            color: var(--brand-dark);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .step-item p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        /* --- FAQ SECTION --- */
+        #faq {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        #faq h2 {
+            color: var(--brand-dark);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            letter-spacing: -1px;
+            text-align: center;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--off-white);
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .faq-item h4 {
+            color: var(--brand-dark);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        /* --- TRUST SECTION --- */
+        #trust {
+            background: var(--brand-dark);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        #trust h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .trust-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            color: white;
+            text-align: center;
+        }
+
+        .trust-item i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--brand-secondary);
+        }
+
+        .trust-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .trust-item p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0;
+        }
+
+        /* --- MODAL SURVEY STYLES --- */
+        .survey-container {
+            margin-top: 20px;
+        }
+
+        .survey-question {
+            font-size: 1.1rem;
+            color: var(--brand-dark);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .survey-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .survey-btn {
+            padding: 12px 30px;
+            border: 2px solid var(--brand-main);
+            background: white;
+            color: var(--brand-main);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .survey-btn:hover {
+            background: var(--brand-main);
+            color: white;
+        }
+
+        .price-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .price-btn {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            background: var(--off-white);
+            color: var(--brand-dark);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .price-btn:hover {
+            border-color: var(--brand-main);
+            background: #fff0f0;
         }
     </style>
 </head>
@@ -867,12 +1073,14 @@
             <div class="hero-wrapper">
                 <div class="hero-text">
                     <p class="hero-stat"
-                       style="font-size: 1.4rem; font-weight: 600; opacity: 0.9; margin-bottom: 10px;">Every year,
-                        thousands of runners are attacked from behind.</p>
-                    <h1 class="hero-title">Don't be one of <span style="color: rgb(252, 101, 0);">them.</span></h1>
-                    <p>The world's first radar that watches your back <span id="dynamic-text">on the trails.</span></p>
-                    <!-- Updated Button Text -->
-                    <button class="btn trigger-modal">Pre-Order | $99</button>
+                       style="font-size: 1.4rem; font-weight: 600; opacity: 0.9; margin-bottom: 10px;">Most runners
+                        never see what's coming from behind.</p>
+                    <h1 class="hero-title">Stay aware. <span>Stay ahead.</span></h1>
+                    <p>The world's first wearable radar that watches your back <span id="dynamic-text">on the
+                            trails.</span></p>
+                    <button class="btn trigger-modal">Reserve at $99</button>
+                    <p style="font-size: 0.95rem; opacity: 0.8; margin-top: 8px; margin-bottom: 0;">No payment today.
+                    </p>
                 </div>
 
 
@@ -892,12 +1100,12 @@
         <div class="feature-item">
             <div class="feature-icon"><i class="fa-solid fa-eye"></i></div>
             <h3>Rear Awareness</h3>
-            <p>60GHz sensor constantly scans the area behind you while you move forward.</p>
+            <p>Radar monitors the area behind you while you move forward.</p>
         </div>
         <div class="feature-item">
             <div class="feature-icon"><i class="fa-solid fa-filter"></i></div>
             <h3>Smart Filter</h3>
-            <p>Ignores passing cars and trees. Designed to detect stalkers.</p>
+            <p>Designed to reduce nuisance alerts from passing objects.</p>
         </div>
         <div class="feature-item">
             <div class="feature-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
@@ -907,7 +1115,7 @@
         <div class="feature-item">
             <div class="feature-icon"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
             <h3>All-Weather</h3>
-            <p>Rain, fog, or sweat. IP67 rated to perform in any condition you run in.</p>
+            <p>Targeting water and sweat resistance for any condition.</p>
         </div>
     </div>
 
@@ -925,8 +1133,8 @@
                         silently to your collar or waistband.</p>
 
                     <div class="spec-list">
-                        <div class="spec-item"><i class="fa-solid fa-battery-full"></i> 12-Hour Active Battery</div>
-                        <div class="spec-item"><i class="fa-solid fa-droplet"></i> IP67 Waterproof & Sweatproof</div>
+                        <div class="spec-item"><i class="fa-solid fa-battery-full"></i> Battery Target: 12+ hours</div>
+                        <div class="spec-item"><i class="fa-solid fa-droplet"></i> Targeting Water Resistance</div>
                         <div class="spec-item"><i class="fa-solid fa-ban"></i> Zero Screens. Zero Distractions.</div>
                     </div>
                 </div>
@@ -968,14 +1176,97 @@
                         <strong>1 Long Rumble</strong>
                     </div>
 
-                    <!-- Stalker Card -->
+                    <!-- Tail Card -->
                     <div class="alert-card stalker">
                         <div class="vibe-icon"><i class="fa-solid fa-user-secret"></i></div>
-                        <h3>The Stalker</h3>
-                        <p>Someone matching your pace in your blind spot.</p>
+                        <h3>The Tail</h3>
+                        <p>Someone trailing at your pace in your blind spot.</p>
                         <strong>2 Solid Thumps</strong>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section id="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="how-it-works-grid">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h3>Clip On</h3>
+                        <p>Attaches to your collar, waistband, or backpack strap.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h3>Turn On</h3>
+                        <p>Single button. No phone or app needed.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h3>Feel It</h3>
+                        <p>Vibrates when movement closes in from behind. Different patterns for different situations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>What does it detect?</h4>
+                        <p>SixthSense uses radar to detect approaching movement from behind you—people, vehicles, or
+                            anything closing the distance.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What doesn't it detect?</h4>
+                        <p>It cannot read intent, predict behavior, or guarantee your safety. It's an awareness tool,
+                            not a security guarantee.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What about false alerts?</h4>
+                        <p>We're designing multiple sensitivity modes and cooldown periods to minimize nuisance alerts
+                            from passing objects.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Battery & Charging?</h4>
+                        <p>Target: 12+ hours of active use per charge. Charges via USB-C. Final specs will be confirmed
+                            before shipping.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Privacy?</h4>
+                        <p>Radar only. No camera, no microphone, no GPS, no data collection. What happens on your run
+                            stays on your run.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUST BUILDERS -->
+        <section id="trust">
+            <div class="container">
+                <h2>What You're Joining</h2>
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <i class="fa-solid fa-box"></i>
+                        <h4>Batch #1: 200 Units</h4>
+                        <p>Target: Summer 2025</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-flask"></i>
+                        <h4>Prototype Status</h4>
+                        <p>Active development</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h4>No Payment Today</h4>
+                        <p>Unsubscribe anytime</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -990,18 +1281,36 @@
     <div class="modal-overlay" id="modal">
         <div class="modal-content">
             <div class="modal-close" onclick="closeModal()">&times;</div>
-            <h3>Reserve Your Spot</h3>
-            <p>You are joining the priority waitlist for <strong>Batch #1</strong>.<br>No payment is required today.</p>
+            <h3 id="modalTitle">Join the Waitlist</h3>
+            <p id="modalDesc">Enter your email to reserve your spot for <strong>Batch #1</strong>.<br>No payment
+                required. Unsubscribe anytime.</p>
 
             <form id="waitlistForm">
                 <input type="email" class="email-input" placeholder="Enter your email address" required>
-                <button type="submit" class="modal-btn">Join Waitlist</button>
+                <button type="submit" class="modal-btn">Reserve My Spot</button>
             </form>
 
-            <p id="successMessage" class="hidden"
-               style="margin-top:20px; margin-bottom:0; color: var(--brand-main); font-weight:bold;">
-                You're on the list! We'll notify you when we launch.
-            </p>
+            <!-- Survey (hidden initially) -->
+            <div id="surveyContainer" class="survey-container hidden">
+                <p class="survey-question">Would you buy SixthSense at $99 when it's available?</p>
+                <div class="survey-buttons">
+                    <button class="survey-btn" onclick="handleSurvey('yes')">Yes</button>
+                    <button class="survey-btn" onclick="handleSurvey('no')">No</button>
+                </div>
+                <div id="priceButtons" class="price-buttons hidden">
+                    <p style="font-size: 0.95rem; color: #666; margin-bottom: 10px;">What's the highest you'd pay?</p>
+                    <button class="price-btn" onclick="handlePrice('$79')">$79</button>
+                    <button class="price-btn" onclick="handlePrice('$59')">$59</button>
+                    <button class="price-btn" onclick="handlePrice('<$59')">Less than $59</button>
+                </div>
+            </div>
+
+            <!-- Final Thank You -->
+            <div id="thankYouMessage" class="hidden" style="margin-top:20px;">
+                <p style="color: var(--brand-main); font-weight: bold; margin-bottom: 10px;">You're on the list!</p>
+                <p style="font-size: 0.95rem; color: #666; margin-bottom: 0;">We'll notify you when Batch #1 is ready.
+                </p>
+            </div>
         </div>
     </div>
 
@@ -1033,16 +1342,39 @@
             btn.style.opacity = "0.7";
 
             setTimeout(() => {
-                this.querySelector('input').style.display = 'none';
-                btn.style.display = 'none';
-                // Hide the explanation text
-                this.previousElementSibling.style.display = 'none';
-                // Hide the title
-                this.parentElement.querySelector('h3').innerText = "Spot Secured.";
+                // Hide form
+                document.getElementById('waitlistForm').style.display = 'none';
+                document.getElementById('modalDesc').style.display = 'none';
+                document.getElementById('modalTitle').innerText = "You're In!";
 
-                document.getElementById('successMessage').style.display = 'block';
+                // Show survey
+                document.getElementById('surveyContainer').classList.remove('hidden');
             }, 1000);
         });
+
+        // Survey handlers
+        function handleSurvey(answer) {
+            if (answer === 'yes') {
+                // Show thank you
+                document.getElementById('surveyContainer').style.display = 'none';
+                document.getElementById('modalTitle').innerText = "Thanks!";
+                document.getElementById('thankYouMessage').classList.remove('hidden');
+            } else {
+                // Show price buttons
+                document.querySelector('.survey-buttons').style.display = 'none';
+                document.querySelector('.survey-question').style.display = 'none';
+                document.getElementById('priceButtons').classList.remove('hidden');
+            }
+        }
+
+        function handlePrice(price) {
+            // Show thank you after price selection
+            document.getElementById('surveyContainer').style.display = 'none';
+            document.getElementById('modalTitle').innerText = "Thanks!";
+            document.getElementById('thankYouMessage').classList.remove('hidden');
+            // Log price preference (would send to backend in production)
+            console.log('Price preference:', price);
+        }
 
         // Text Rotator
         const textElement = document.getElementById('dynamic-text');
